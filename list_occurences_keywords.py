@@ -103,7 +103,7 @@ def global_mission( codenaff) :
 def list_occurence_by_code_naf( list_code_naf,addresse) :
     writer = pd.ExcelWriter( addresse , engine='xlsxwriter')
     for code_naf in list_code_naf :
-        time.spleep(0.2)
+        time.sleep(0.2)
         DF = global_mission( code_naf)
         DF.to_excel(writer, sheet_name= code_naf , index = False)
         for column in DF:
