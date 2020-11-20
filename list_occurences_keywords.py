@@ -72,7 +72,7 @@ def select_by_naf_code(codenaff) :
     cursor = collection.find( search, resp_form )
     
     list_id_text = [ {"id_item" : item["id"], "list_descr" : item["web_infos"]['list_normalized_description'] } for item in cursor ]                                      
-    print( "taille pour le code naf {} ".format(list_id_text ))
+    print( "taille pour le code naf {} ".format( len( list_id_text )) )
     return( list_id_text )    
 
 
