@@ -105,7 +105,7 @@ def global_mission( codenaff) :
     return(DF)
 
 def list_occurence_by_code_naf( list_code_naf,addresse) :
-    writer = pd.ExcelWriter( list_code_naf , engine='xlsxwriter')
+    writer = pd.ExcelWriter( addresse , engine='xlsxwriter')
     for code_naf in list_code_naf :
         DF = global_mission( code_naf)
         DF.to_excel(writer, sheet_name= code_naf , index = False)
@@ -116,13 +116,13 @@ def list_occurence_by_code_naf( list_code_naf,addresse) :
     writer.save()
                 
 
-list_occurence_by_code_naf( ["01","02","45", "62"],"01_02_45_62.xlsx")
+#list_occurence_by_code_naf( ["01","02","45", "62"],"01_02_45_62.xlsx")
 
 
-list_occurence_by_code_naf( ["1051D","2013A","4110A", "5110Z"],"1051D_2013A_4110A_5110Z.xlsx")
+list_occurence_by_code_naf( ["1051D","2013A","4110A","5110Z"],"1051D_2013A_4110A_5110Z.xlsx")
 
 
-
+list_occurence_by_code_naf( ["105","201","411","511"],"105_201_411_511.xlsx")
 
 
 
