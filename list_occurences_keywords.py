@@ -29,19 +29,10 @@ import re
 
 import unicodedata
 
-from sklearn.metrics.pairwise import cosine_similarity
-
-from sklearn.neighbors import DistanceMetric
-
-from sklearn.feature_extraction.text import CountVectorizer
-
 from stop_words import get_stop_words
 
 import warnings
 warnings.simplefilter('ignore', UserWarning)
-
-import coloredlogs, logging
-coloredlogs.install()
 
 import time
 
@@ -65,6 +56,8 @@ list_stop_words= get_stop_words("french") + get_stop_words("english") +["nan"]
 
 codenaff = "4531Z"
 
+tab_naf_code = pd.ExcelFile("naf2008_5_niveaux.xls").parse("naf2008_5_niveaux")
+
 def select_by_naf_code(codenaff) :
     search = { "organization.activity.ape_code" :  {"$regex" : str(codenaff)+".*"} }
     resp_form ={"id" : 1, 'web_infos.list_normalized_description' :1
@@ -78,7 +71,8 @@ def select_by_naf_code(codenaff) :
 
 def list_occurences_from_list_strings ( text) :
     l_text = [ word for word in text if not( word in list_stop_words )]
-    dict_occurences = dict((x,l_text.count(x)) for x in set(l_text))
+    unique_word = set(l_text)
+    dict_occurences = dict((x,l_text.count(x)) for x in unique_word )
     list_dict_occurences = [ { "word" : word, "occurence" : value  } for word,value in dict_occurences.items()  ]
     
     return( list_dict_occurences )
@@ -119,16 +113,21 @@ def list_occurence_by_code_naf( list_code_naf,addresse) :
 #list_occurence_by_code_naf( ["01","02","45", "62"],"01_02_45_62.xlsx")
 
 
-list_occurence_by_code_naf( ["1051D","2013A","4110A","5110Z"],"1051D_2013A_4110A_5110Z.xlsx")
+#list_occurence_by_code_naf( ["1051D","2013A","4110A","5110Z"],"1051D_2013A_4110A_5110Z.xlsx")
 
 
-list_occurence_by_code_naf( ["105","201","411","511"],"105_201_411_511.xlsx")
+#list_occurence_by_code_naf( ["105","201","411","511"],"105_201_411_511.xlsx")
 
+t1 = time.time()
 
+list_code_naf_niv5 = tab_naf_code.NIV5.str.replace(".","").tolist()
 
+list_occurence_by_code_naf( list_code_naf_niv5,"list_mot_niv5.xlsx")
 
+t2 = time.time()
+print(" finish total en {} minutes".format( (t2-t1)/60 ))
 
-
+print("compresse le fichier , compresse le")
 
 
 
