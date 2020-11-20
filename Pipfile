@@ -1,0 +1,26 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+argparse = "*"
+beautifulsoup4 = "*"
+coloredlogs = "*"
+dask = {extras = ["complete"], version = "*"}
+multiprocess = "*"
+numpy = "*"
+pandas = "*"
+pymongo = "*"
+requests = "*"
+sklearn = "*"
+stop-words = "*"
+swifter = "*"
+unicodedata2 = "*"
+urllib3 = "*"
+XlsxWriter = "*"
+
+[requires]
+python_version = "3.7"
