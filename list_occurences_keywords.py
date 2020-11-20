@@ -56,7 +56,9 @@ list_stop_words= get_stop_words("french") + get_stop_words("english") +["nan"]
 
 codenaff = "4531Z"
 
-tab_naf_code = pd.ExcelFile("naf2008_5_niveaux.xls").parse("naf2008_5_niveaux")
+#tab_naf_code = pd.ExcelFile("naf2008_5_niveaux.xls").parse("naf2008_5_niveaux")
+
+tab_naf_code = pd.read_csv( "naf2008_5_niveaux.csv")
 
 def select_by_naf_code(codenaff) :
     search = { "organization.activity.ape_code" :  {"$regex" : str(codenaff)+".*"} }
