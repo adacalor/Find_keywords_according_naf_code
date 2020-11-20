@@ -1,0 +1,16 @@
+argparse
+beautifulsoup4
+coloredlogs
+dask
+dask[complete] 
+multiprocess
+numpy
+pandas
+pymongo
+requests
+sklearn
+stop_words
+swifter
+unicodedata2
+urllib3
+xlsxwriter
