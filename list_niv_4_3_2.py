@@ -65,6 +65,8 @@ tab_naf_code["niveau2"] = tab_naf_code.niveau5.apply(lambda x : x[0:2])
 #writer = pd.ExcelWriter( "list_mot_niv4.xlsx" , engine='xlsxwriter')
 
 writer = pd.ExcelWriter( "list_mot_niv4.xlsx" , engine='xlsxwriter')
+print("niveau 4")
+
 
 print(tab_naf_code.loc[0] )
 list_etudie = tab_naf_code["niveau4"].unique().tolist() 
@@ -77,6 +79,7 @@ for niv4 in list_etudie :
         temp = DF.parse( niv5 )
         DF_temp = DF_temp.append(temp )
     DF_excel = DF_temp.groupby( [ "word"] ).sum()
+    DF_excel = DF_excel.sort_values(by = ['occurence'], ascending=False )
     DF_excel.to_excel(writer, sheet_name= niv4 , index = True)
     for column in DF_excel:
                 column_length = max(DF_excel[column].astype(str).map(len).max(), len(column)) #ajusté a la plus grande cellue
@@ -85,6 +88,8 @@ for niv4 in list_etudie :
 writer.save()
         
 writer = pd.ExcelWriter( "list_mot_niv3.xlsx" , engine='xlsxwriter')
+print("niveau 3")
+
 
 list_etudie = tab_naf_code["niveau3"].unique().tolist() 
 
@@ -96,6 +101,7 @@ for niv3 in list_etudie :
         temp = DF.parse( niv5 )
         DF_temp = DF_temp.append(temp )
     DF_excel = DF_temp.groupby( [ "word"] ).sum()
+    DF_excel = DF_excel.sort_values(by = ['occurence'], ascending=False )
     DF_excel.to_excel(writer, sheet_name= niv3 , index = True)
     for column in DF_excel:
                 column_length = max(DF_excel[column].astype(str).map(len).max(), len(column)) #ajusté a la plus grande cellue
@@ -104,17 +110,27 @@ for niv3 in list_etudie :
 writer.save()
         
     
-       
+writer = pd.ExcelWriter( "list_mot_niv2.xlsx" , engine='xlsxwriter')
 
+print("niveau 2")
 
+list_etudie = tab_naf_code["niveau2"].unique().tolist() 
 
-import pandas
-
-df1 = pandas.DataFrame( { 
-    "word" : ["Alice", "Bob", "Mallory", "Mallory", "Bob" , "Mallory"] , 
-    "occurence" : [1,5, 2, 4, 2, 7] } )
-
-g1 = df1.groupby( [ "word"] ).sum()
+for niv2 in list_etudie :
+    logging.info(niv3)
+    DF_temp = pd.DataFrame(None,columns = ["word","occurence"])
+    list_niveau5 = tab_naf_code[ tab_naf_code.niveau2 == niv2]["niveau5"].tolist()
+    for niv5 in list_niveau5 :
+        temp = DF.parse( niv5 )
+        DF_temp = DF_temp.append(temp )
+    DF_excel = DF_temp.groupby( [ "word"] ).sum()
+    DF_excel = DF_excel.sort_values(by = ['occurence'], ascending=False )
+    DF_excel.to_excel(writer, sheet_name= niv2 , index = True)
+    for column in DF_excel:
+                column_length = max(DF_excel[column].astype(str).map(len).max(), len(column)) #ajusté a la plus grande cellue
+                col_idx = DF_excel.columns.get_loc(column)
+                writer.sheets[ niv2 ].set_column(col_idx, col_idx, min(column_length,30) )
+writer.save()       
 
 
 
