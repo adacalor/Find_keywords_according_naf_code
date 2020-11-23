@@ -67,6 +67,7 @@ tab_naf_code=[]
 
 writer = pd.ExcelWriter( "list_mot_niv4.xlsx" , engine='xlsxwriter')
 
+print(tab_naf_code.loc[0] )
 list_etudie = tab_naf_code["niveau4"].unique().tolist() 
 
 for niv4 in list_etudie :
