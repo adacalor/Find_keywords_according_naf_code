@@ -1,0 +1,12 @@
+{
+    "apps": [{
+        "name": "list_split",
+        "script": "list_niv_4_3_2.py",
+        "args": [""],
+        "wait_ready": true,
+        "autorestart": false,
+        "max_restarts": 5,
+        "interpreter" : "pipenv",
+        "interpreter_args": "run python"
+    }]
+}
