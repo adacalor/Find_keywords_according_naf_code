@@ -59,7 +59,6 @@ tab_naf_code["niveau4"] = tab_naf_code.niveau5.apply(lambda x : x[0:4])
 tab_naf_code["niveau3"] = tab_naf_code.niveau5.apply(lambda x : x[0:3])
 tab_naf_code["niveau2"] = tab_naf_code.niveau5.apply(lambda x : x[0:2])
 
-tab_naf_code=[]
 
 ###################################"
 
