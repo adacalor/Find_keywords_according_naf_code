@@ -67,6 +67,7 @@ writer = pd.ExcelWriter( "list_mot_niv4.xlsx" , engine='xlsxwriter')
 list_etudie = tab_naf_code["niveau4"].unique().tolist() 
 
 for niv4 in list_etudie :
+    print(niv4)
     DF_temp = pd.DataFrame(None,columns = ["word","occurence"])
     list_niveau5 = tab_naf_code[ tab_naf_code.niveau4 == niv4]["niveau5"].tolist()
     for niv5 in list_niveau5 :
@@ -85,6 +86,7 @@ writer = pd.ExcelWriter( "list_mot_niv3.xlsx" , engine='xlsxwriter')
 list_etudie = tab_naf_code["niveau3"].unique().tolist() 
 
 for niv3 in list_etudie :
+    print(niv3)
     DF_temp = pd.DataFrame(None,columns = ["word","occurence"])
     list_niveau5 = tab_naf_code[ tab_naf_code.niveau3 == niv3]["niveau5"].tolist()
     for niv5 in list_niveau5 :
